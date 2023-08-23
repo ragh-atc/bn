@@ -58,25 +58,23 @@ export class FormControllerBase {
       data: {
         ...data,
 
-        user: data.user
-          ? {
-              connect: data.user,
-            }
-          : undefined,
+        createdBy: {
+          connect: data.createdBy,
+        },
       },
       select: {
         createdAt: true,
-        createdBy: true,
-        description: true,
-        id: true,
-        title: true,
-        updatedAt: true,
 
-        user: {
+        createdBy: {
           select: {
             id: true,
           },
         },
+
+        description: true,
+        id: true,
+        title: true,
+        updatedAt: true,
       },
     });
   }
@@ -99,17 +97,17 @@ export class FormControllerBase {
       ...args,
       select: {
         createdAt: true,
-        createdBy: true,
-        description: true,
-        id: true,
-        title: true,
-        updatedAt: true,
 
-        user: {
+        createdBy: {
           select: {
             id: true,
           },
         },
+
+        description: true,
+        id: true,
+        title: true,
+        updatedAt: true,
       },
     });
   }
@@ -128,17 +126,17 @@ export class FormControllerBase {
       where: params,
       select: {
         createdAt: true,
-        createdBy: true,
-        description: true,
-        id: true,
-        title: true,
-        updatedAt: true,
 
-        user: {
+        createdBy: {
           select: {
             id: true,
           },
         },
+
+        description: true,
+        id: true,
+        title: true,
+        updatedAt: true,
       },
     });
     if (result === null) {
@@ -171,25 +169,23 @@ export class FormControllerBase {
         data: {
           ...data,
 
-          user: data.user
-            ? {
-                connect: data.user,
-              }
-            : undefined,
+          createdBy: {
+            connect: data.createdBy,
+          },
         },
         select: {
           createdAt: true,
-          createdBy: true,
-          description: true,
-          id: true,
-          title: true,
-          updatedAt: true,
 
-          user: {
+          createdBy: {
             select: {
               id: true,
             },
           },
+
+          description: true,
+          id: true,
+          title: true,
+          updatedAt: true,
         },
       });
     } catch (error) {
@@ -221,17 +217,17 @@ export class FormControllerBase {
         where: params,
         select: {
           createdAt: true,
-          createdBy: true,
-          description: true,
-          id: true,
-          title: true,
-          updatedAt: true,
 
-          user: {
+          createdBy: {
             select: {
               id: true,
             },
           },
+
+          description: true,
+          id: true,
+          title: true,
+          updatedAt: true,
         },
       });
     } catch (error) {
@@ -260,8 +256,6 @@ export class FormControllerBase {
     const results = await this.service.findQuestions(params.id, {
       ...query,
       select: {
-        dropdownOptions: true,
-
         form: {
           select: {
             id: true,

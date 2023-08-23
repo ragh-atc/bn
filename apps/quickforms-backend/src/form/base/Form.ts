@@ -11,11 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
+import { IsDate, ValidateNested, IsString, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { User } from "../../user/base/User";
 import { Question } from "../../question/base/Question";
 import { Submission } from "../../submission/base/Submission";
-import { User } from "../../user/base/User";
 
 @ObjectType()
 class Form {
@@ -29,11 +29,11 @@ class Form {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: () => User,
   })
-  @IsString()
-  @Field(() => String)
-  createdBy!: string;
+  @ValidateNested()
+  @Type(() => User)
+  createdBy?: User;
 
   @ApiProperty({
     required: false,
@@ -87,15 +87,6 @@ class Form {
   @Type(() => Date)
   @Field(() => Date)
   updatedAt!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: () => User,
-  })
-  @ValidateNested()
-  @Type(() => User)
-  @IsOptional()
-  user?: User | null;
 }
 
 export { Form as Form };

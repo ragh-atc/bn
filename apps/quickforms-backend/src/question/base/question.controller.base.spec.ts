@@ -19,27 +19,23 @@ import { QuestionService } from "../question.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  dropdownOptions: "exampleDropdownOptions",
   id: "exampleId",
   label: "exampleLabel",
   options: "exampleOptions",
 };
 const CREATE_RESULT = {
-  dropdownOptions: "exampleDropdownOptions",
   id: "exampleId",
   label: "exampleLabel",
   options: "exampleOptions",
 };
 const FIND_MANY_RESULT = [
   {
-    dropdownOptions: "exampleDropdownOptions",
     id: "exampleId",
     label: "exampleLabel",
     options: "exampleOptions",
   },
 ];
 const FIND_ONE_RESULT = {
-  dropdownOptions: "exampleDropdownOptions",
   id: "exampleId",
   label: "exampleLabel",
   options: "exampleOptions",

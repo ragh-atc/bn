@@ -11,21 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { QuestionCreateNestedManyWithoutFormsInput } from "./QuestionCreateNestedManyWithoutFormsInput";
-import { Type } from "class-transformer";
-import { SubmissionCreateNestedManyWithoutFormsInput } from "./SubmissionCreateNestedManyWithoutFormsInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { ValidateNested, IsString, IsOptional } from "class-validator";
+import { Type } from "class-transformer";
+import { QuestionCreateNestedManyWithoutFormsInput } from "./QuestionCreateNestedManyWithoutFormsInput";
+import { SubmissionCreateNestedManyWithoutFormsInput } from "./SubmissionCreateNestedManyWithoutFormsInput";
 
 @InputType()
 class FormCreateInput {
   @ApiProperty({
     required: true,
-    type: String,
+    type: () => UserWhereUniqueInput,
   })
-  @IsString()
-  @Field(() => String)
-  createdBy!: string;
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
+  @Field(() => UserWhereUniqueInput)
+  createdBy!: UserWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -69,18 +70,6 @@ class FormCreateInput {
   @IsString()
   @Field(() => String)
   title!: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  user?: UserWhereUniqueInput | null;
 }
 
 export { FormCreateInput as FormCreateInput };

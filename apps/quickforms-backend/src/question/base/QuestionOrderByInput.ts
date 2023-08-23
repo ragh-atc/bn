@@ -28,17 +28,6 @@ class QuestionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  dropdownOptions?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   formId?: SortOrder;
 
   @ApiProperty({
