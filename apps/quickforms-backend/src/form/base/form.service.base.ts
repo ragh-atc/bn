@@ -69,11 +69,11 @@ export class FormServiceBase {
       .submissions(args);
   }
 
-  async getUser(parentId: string): Promise<User | null> {
+  async getCreatedBy(parentId: string): Promise<User | null> {
     return this.prisma.form
       .findUnique({
         where: { id: parentId },
       })
-      .user();
+      .createdBy();
   }
 }

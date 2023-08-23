@@ -224,17 +224,17 @@ export class UserControllerBase {
       ...query,
       select: {
         createdAt: true,
-        createdBy: true,
-        description: true,
-        id: true,
-        title: true,
-        updatedAt: true,
 
-        user: {
+        createdBy: {
           select: {
             id: true,
           },
         },
+
+        description: true,
+        id: true,
+        title: true,
+        updatedAt: true,
       },
     });
     if (results === null) {

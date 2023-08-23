@@ -32,17 +32,6 @@ class QuestionCreateInput {
   answers?: AnswerCreateNestedManyWithoutQuestionsInput;
 
   @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  dropdownOptions?: string | null;
-
-  @ApiProperty({
     required: true,
     type: () => FormWhereUniqueInput,
   })
