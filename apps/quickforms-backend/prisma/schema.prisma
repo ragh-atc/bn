@@ -37,7 +37,7 @@ model Question {
   form         Form                     @relation(fields: [formId], references: [id])
   formId       String
   id           String                   @id @default(cuid())
-  label        String                   @unique
+  label        String
   options      Json?
   questionType EnumQuestionQuestionType
 }
@@ -58,7 +58,7 @@ model Answer {
   questionId   String
   submission   Submission @relation(fields: [submissionId], references: [id])
   submissionId String
-  value        String     @unique
+  value        String
 }
 
 enum EnumQuestionQuestionType {
