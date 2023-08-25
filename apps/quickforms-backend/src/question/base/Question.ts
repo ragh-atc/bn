@@ -15,6 +15,9 @@ import { Answer } from "../../answer/base/Answer";
 import { ValidateNested, IsOptional, IsString, IsEnum } from "class-validator";
 import { Type } from "class-transformer";
 import { Form } from "../../form/base/Form";
+import { IsJSONValue } from "@app/custom-validators";
+import { GraphQLJSON } from "graphql-type-json";
+import { JsonValue } from "type-fest";
 import { EnumQuestionQuestionType } from "./EnumQuestionQuestionType";
 
 @ObjectType()
@@ -54,14 +57,13 @@ class Question {
 
   @ApiProperty({
     required: false,
-    type: String,
   })
-  @IsString()
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  options!: string | null;
+  options!: JsonValue;
 
   @ApiProperty({
     required: true,

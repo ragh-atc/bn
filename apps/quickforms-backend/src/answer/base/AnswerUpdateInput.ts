@@ -40,7 +40,7 @@ class AnswerUpdateInput {
   @Field(() => SubmissionWhereUniqueInput, {
     nullable: true,
   })
-  submission?: SubmissionWhereUniqueInput | null;
+  submission?: SubmissionWhereUniqueInput;
 
   @ApiProperty({
     required: false,
