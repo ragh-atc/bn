@@ -12,7 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { QuestionWhereUniqueInput } from "../../question/base/QuestionWhereUniqueInput";
-import { ValidateNested, IsOptional, IsString } from "class-validator";
+import { ValidateNested, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { SubmissionWhereUniqueInput } from "../../submission/base/SubmissionWhereUniqueInput";
 
@@ -28,16 +28,13 @@ class AnswerCreateInput {
   question!: QuestionWhereUniqueInput;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => SubmissionWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => SubmissionWhereUniqueInput)
-  @IsOptional()
-  @Field(() => SubmissionWhereUniqueInput, {
-    nullable: true,
-  })
-  submission?: SubmissionWhereUniqueInput | null;
+  @Field(() => SubmissionWhereUniqueInput)
+  submission!: SubmissionWhereUniqueInput;
 
   @ApiProperty({
     required: true,

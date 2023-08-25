@@ -15,6 +15,9 @@ import { AnswerUpdateManyWithoutQuestionsInput } from "./AnswerUpdateManyWithout
 import { ValidateNested, IsOptional, IsString, IsEnum } from "class-validator";
 import { Type } from "class-transformer";
 import { FormWhereUniqueInput } from "../../form/base/FormWhereUniqueInput";
+import { IsJSONValue } from "@app/custom-validators";
+import { GraphQLJSON } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 import { EnumQuestionQuestionType } from "./EnumQuestionQuestionType";
 
 @InputType()
@@ -56,14 +59,13 @@ class QuestionUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
   })
-  @IsString()
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  options?: string | null;
+  options?: InputJsonValue;
 
   @ApiProperty({
     required: false,

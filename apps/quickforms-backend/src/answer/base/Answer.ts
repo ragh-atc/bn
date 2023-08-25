@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, ValidateNested, IsOptional } from "class-validator";
+import { IsString, ValidateNested } from "class-validator";
 import { Question } from "../../question/base/Question";
 import { Type } from "class-transformer";
 import { Submission } from "../../submission/base/Submission";
@@ -35,13 +35,12 @@ class Answer {
   question?: Question;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => Submission,
   })
   @ValidateNested()
   @Type(() => Submission)
-  @IsOptional()
-  submission?: Submission | null;
+  submission?: Submission;
 
   @ApiProperty({
     required: true,

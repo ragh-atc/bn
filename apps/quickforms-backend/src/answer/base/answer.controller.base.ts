@@ -55,11 +55,9 @@ export class AnswerControllerBase {
           connect: data.question,
         },
 
-        submission: data.submission
-          ? {
-              connect: data.submission,
-            }
-          : undefined,
+        submission: {
+          connect: data.submission,
+        },
       },
       select: {
         id: true,
@@ -186,11 +184,9 @@ export class AnswerControllerBase {
             connect: data.question,
           },
 
-          submission: data.submission
-            ? {
-                connect: data.submission,
-              }
-            : undefined,
+          submission: {
+            connect: data.submission,
+          },
         },
         select: {
           id: true,
